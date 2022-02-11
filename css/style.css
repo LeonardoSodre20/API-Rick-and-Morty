@@ -13,15 +13,13 @@ body{
 .container-main{
     display: flex;
     align-items: center;
-    justify-content: center;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .container-character{
     display: flex;
     flex-wrap: wrap;
-    flex-direction: column;
-    align-items: center;
     background-color: white;
     height: 400px;
     width: 400px;
