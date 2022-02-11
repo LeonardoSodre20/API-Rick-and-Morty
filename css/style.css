@@ -6,15 +6,33 @@
 
 body{
     background-color: aquamarine;
+    height: 100vh;
+    width: 100%;
 }
 
 .container-main{
     display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .container-character{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
     background-color: white;
     height: 400px;
     width: 400px;
     margin: 20px;
+}
+
+.container-img-character{
+    height: 150px;
+    width: 250px;
+}
+
+.container-img-character > img{
+    width: 100%;
 }
