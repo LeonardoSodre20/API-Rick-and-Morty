@@ -1,33 +1,32 @@
+const divNames = document.querySelector('.container-main')
+
 const requestCharactersAPI = () => {
-    const url = `https://rickandmortyapi.com/api/character`
 
-    fetch(url)
-        .then(response => response.json())
-            .then(json => {
+    const url = id =>`https://rickandmortyapi.com/api/character/${id}`
+    
+    const charactersPromises = []
 
-                console.log(json)
+    for(let i = 1; i <= 200; i++ ){
+        charactersPromises.push(fetch(url(i)).then(response =>response.json()))
+    }
 
-                const containerMain = document.querySelector('[data-container-main]')
-            
-                json.results.map(results => [
+    Promise.all(charactersPromises)
+        .then(characters => {
+            console.log(characters)
 
-                    containerMain.innerHTML+= `
-                        <div class="container-character">
-                            <div class="container-img-character">
-                            <img src=${results.image}>
-                            </div>
-                            
-                            <h1>${results.name}</h1>
-                            <h2>${results.species}</h2>
-                            <h3>${results.status}</h3>
-                            <h4>${results.gender}</h4>
-                        </div>
-                    `    
-                ])
+            const spanCharacters = characters.reduce((accumulator, character) => {
+                accumulator+=`<div class="container-character">
+                <div>${character.name}</div>
+                <div><img src="${character.image}"></div>
+                </div>`
 
+                return accumulator
+            },'' )
 
+            console.log(spanCharacters)
 
-            })
+            divNames.innerHTML = spanCharacters
+        })
 }
 
 requestCharactersAPI()
